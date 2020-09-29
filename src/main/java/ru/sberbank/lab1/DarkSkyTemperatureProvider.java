@@ -10,7 +10,7 @@ import static java.lang.String.format;
 
 @Service
 public class DarkSkyTemperatureProvider implements TemperatureProvider {
-    private final static String BASE_URL = "https://api.darksky.net/forecast/ac1830efeff59c748d212052f27d49aa/";
+    private final static String BASE_URL = "https://api.darksky.net/forecast/3ce5ca6c6c64befaa69dd9cf05b939db/";
     private final static String LA_COORDINATES = "34.053044,-118.243750,";
     private final static String EXCLUDE = "exclude=daily";
 
@@ -19,7 +19,7 @@ public class DarkSkyTemperatureProvider implements TemperatureProvider {
     private final RestTemplate restTemplate = new RestTemplate();
 
     @Override
-    @Cacheable("temperatures")
+    @Cacheable(value = "temperatures", key = "#timestamp")
     public Double getTemperature(String timestamp) {
         String info = getTodayWeather(timestamp);
         return getTemperatureFromInfo(info);

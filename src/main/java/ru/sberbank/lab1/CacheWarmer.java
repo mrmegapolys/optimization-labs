@@ -13,7 +13,7 @@ import static ru.sberbank.utils.Utils.getZonedDateTimeAtStartOfHour;
 @RequiredArgsConstructor
 public class CacheWarmer {
     private final TemperatureProvider temperatureProvider;
-    private final static int WARM_UP_DEPTH_HOURS = 30 * 24;
+    private final static int WARM_UP_DEPTH_HOURS = 10 * 24;
 
     @Scheduled(cron = "${cache.warmup.cron}")
     public void warmUpCache() {
